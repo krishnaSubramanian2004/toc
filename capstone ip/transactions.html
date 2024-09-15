@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #fff;
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+        }
+        nav {
+            background-color: #222;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding: 20px;
+        }
+        .transaction-card {
+            background: #333;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+        .transaction-card h3 {
+            margin: 0;
+        }
+        .back-to-home-btn {
+            background: #e50914;
+            border: none;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .back-to-home-btn:hover {
+            background: #f40612;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Transaction History</h1>
+    </header>
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="watchlist.html">Watchlist</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="profile.html">Profile</a>
+        <a href="genres.html">Genres</a>
+        <a href="faq.html">FAQ</a>
+        <a href="settings.html">Settings</a>
+    </nav>
+
+    <div class="container">
+        <div id="transaction-list">
+            <!-- Transaction history will be injected here -->
+        </div>
+        
+    </div>
+
+    <script>
+        // Sample data for demonstration
+        const transactions = [
+            { date: '2024-09-01', amount: '199', type: 'Subscription', plan: 'Basic' },
+            { date: '2024-08-15', amount: '499', type: 'Subscription', plan: 'Standard' },
+            { date: '2024-07-10', amount: '799', type: 'Subscription', plan: 'Premium' }
+        ];
+
+        function updateTransactionHistory() {
+            const transactionList = document.getElementById('transaction-list');
+            transactionList.innerHTML = '';
+            transactions.forEach(transaction => {
+                const transactionCard = document.createElement('div');
+                transactionCard.classList.add('transaction-card');
+                transactionCard.innerHTML = `
+                    <h3>${transaction.type} - ${transaction.plan}</h3>
+                    <p>Date: ${transaction.date}</p>
+                    <p>Amount: ₹${transaction.amount}</p>
+                `;
+                transactionList.appendChild(transactionCard);
+            });
+        }
+
+        // Call this function when the page loads
+        updateTransactionHistory();
+    </script>
+</body>
+</html>

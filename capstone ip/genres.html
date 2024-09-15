@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genres - Cineflow</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #e50914; /* Netflix red */
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+        }
+        nav {
+            background-color: #333; /* Dark background for nav */
+            padding: 10px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding: 20px;
+        }
+        .genre-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .genre {
+            background: #222;
+            padding: 15px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            position: relative;
+        }
+        .genre img {
+            width: 100%;
+            border-radius: 4px;
+        }
+        .genre h2 {
+            margin: 10px 0;
+        }
+        .genre p {
+            margin: 0;
+        }
+        .genre-buttons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .genre-buttons button {
+            background: #e50914; /* Netflix red */
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .genre-buttons button:hover {
+            background: #b81d24; /* Darker red */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cineflow</h1>
+    </header>
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="watchlist.html">Watchlist</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="profile.html">Profile</a>
+        <a href="genres.html">Genres</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="faq.html">FAQ</a>
+        <a href="settings.html">Settings</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms and Conditions</a>
+        <a href="about.html">About Us</a>
+    </nav>
+
+    <div class="container">
+        <h1>Genres</h1>
+        <div class="genre-list">
+            <div class="genre">
+                <h2>Action Movies</h2>
+                <img src="https://m.media-amazon.com/images/M/MV5BN2EwM2I5OWMtMGQyMi00Zjg1LWJkNTctZTdjYTA4OGUwZjMyXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg" alt="Mad Max">
+                <p><strong>Mad Max: Fury Road</strong> - In a post-apocalyptic wasteland, Max teams up with a rebel warlord to try and survive.</p>
+                <div class="genre-buttons">
+                    <button onclick="viewDetails('mad-max')">View Details</button>
+                </div>
+            </div>
+            <div class="genre">
+                <h2>Comedy Movies</h2>
+                <img src="https://m.media-amazon.com/images/M/MV5BNGQwZjg5YmYtY2VkNC00NzliLTljYTctNzI5NmU3MjE2ODQzXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" alt="The Hangover">
+                <p><strong>The Hangover</strong> - Three friends wake up from a bachelor party in Las Vegas with no memory of the previous night and the bachelor missing.</p>
+                <div class="genre-buttons">
+                    <button onclick="viewDetails('the-hangover')">View Details</button>
+                </div>
+            </div>
+            <div class="genre">
+                <h2>Drama Movies</h2>
+                <img src="https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg" alt="The Godfather">
+                <p><strong>The Godfather</strong> - The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.</p>
+                <div class="genre-buttons">
+                    <button onclick="viewDetails('the-godfather')">View Details</button>
+                </div>
+            </div>
+            <div class="genre">
+                <h2>Documentary Movies</h2>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0QpQswQxCSyywIE9QD_vY5RdB7K1VyEEkDQ&s" alt="13th">
+                <p><strong>13th</strong> - A documentary that explores the history of racial inequality in the United States, focusing on the nation's prisons.</p>
+                <div class="genre-buttons">
+                    <button onclick="viewDetails('13th')">View Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Cineflow. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function viewDetails(movieId) {
+            // Logic to view movie details
+            window.location.href = `movie-details.html?movie=${movieId}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Movie Trailer - Cineflow</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Cineflow</h1>
+    </header>
+
+    <nav>
+        <a href="watchlist.html">Watchlist</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="profile.html">Profile</a>
+        <a href="genres.html">Genres</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="faq.html">FAQ</a>
+        <a href="settings.html">Settings</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms and Conditions</a>
+        <a href="about.html">About Us</a>
+    </nav>
+
+    <div class="container">
+        <h1>Watch Movie Trailer</h1>
+        <div class="video-player">
+            <iframe id="video-player" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+        
+        <div class="button-container">
+            <button onclick="loadTrailer('https://www.youtube.com/embed/8hP9D6kZseM')">Inception</button>
+            <button onclick="loadTrailer('https://www.youtube.com/embed/EXeTwQWrcwY')">The Dark Knight</button>
+            <button onclick="loadTrailer('https://www.youtube.com/embed/6hB3S9bIaco')">The Shawshank Redemption</button>
+            <button onclick="loadTrailer('https://www.youtube.com/embed/UaVTIH8mujA')">The Godfather</button>
+            <button onclick="loadTrailer('https://www.youtube.com/embed/s7EdQ4FqbhY')">Pulp Fiction</button>
+            <button onclick="loadTrailer('https://www.youtube.com/embed/bLvqoHBptjg')">Forrest Gump</button>
+            <button onclick="loadTrailer('https://www.youtube.com/embed/qtRKdVHc-cE')">Fight Club</button>
+            <button onclick="loadTrailer('https://www.youtube.com/embed/vKQi3bBA1y8')">The Matrix</button>
+            <button onclick="loadTrailer('https://www.youtube.com/embed/zSWdZVtXT7E')">Interstellar</button>
+            
+        </div>
+        
+        <button onclick="window.location.href='home.html'">Home</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Cineflow. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function loadTrailer(url) {
+            document.getElementById('video-player').src = url;
+        }
+    </script>
+</body>
+</html>

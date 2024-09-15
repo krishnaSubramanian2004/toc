@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Now - Cineflow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #141414;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #e50914;
+            padding: 10px;
+            color: #fff;
+        }
+        .container {
+            margin: 20px;
+        }
+        iframe {
+            width: 80%;
+            height: 500px;
+            border: none;
+        }
+        .back-button {
+            background: #e50914;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .back-button:hover {
+            background: #b81d24;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Watch Now - Cineflow</h1>
+    </header>
+
+    <div class="container">
+        <iframe id="movie-trailer" src="" allowfullscreen></iframe>
+        <br>
+        <button class="back-button" onclick="window.location.href='home.html'">Back to Home</button>
+    </div>
+
+    <script>
+        const movies = [
+            { id: '1', title: 'The Last Stand', trailer: 'https://www.youtube.com/embed/zGMrc7EaozE' },
+            { id: '3', title: 'The Outsider', trailer: 'https://www.youtube.com/embed/z6zTv9MTNo8' },
+            { id: '5', title: 'Soviet Project 12', trailer: 'https://www.youtube.com/embed/qXiHBm8WJQA' },
+            { id: '6', title: 'Ip Man 3', trailer: 'https://www.youtube.com/embed/cqsZpDqGujI' },
+            { id: '7', title: 'Monsters of Man', trailer: 'https://www.youtube.com/embed/VZQmj6bH5cY' },
+            { id: '8', title: 'The Icebreaker', trailer: 'https://www.youtube.com/embed/g1KBhw7ln5s' },
+            { id: '9', title: 'Conjuring the Beyond', trailer: 'https://www.youtube.com/embed/atnW4D6pc-w' },
+            { id: '10', title: 'Maze Runner: The Death Cure', trailer: 'https://www.youtube.com/embed/nPlHGhcOZOY' }
+        ];
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get('id');
+
+        const movie = movies.find(m => m.id === movieId);
+        if (movie) {
+            document.getElementById('movie-trailer').src = movie.trailer;
+        } else {
+            document.getElementById('movie-trailer').src = '';
+            alert('Movie not found.');
+        }
+    </script>
+</body>
+</html>

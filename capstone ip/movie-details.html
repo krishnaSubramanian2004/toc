@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details - Cineflow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #e50914;
+            padding: 10px;
+            color: #fff;
+        }
+        .container {
+            padding: 20px;
+        }
+        iframe {
+            width: 80%;
+            height: 500px;
+            border: none;
+        }
+        .back-button {
+            background: #e50914;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .back-button:hover {
+            background: #b81d24;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Movie Trailer</h1>
+    </header>
+
+    <div class="container">
+        <iframe id="movie-trailer" src="" allowfullscreen></iframe>
+        <br>
+        <button class="back-button" onclick="window.location.href='genres.html'">Back to Genres</button>
+    </div>
+
+    <script>
+        const trailers = {
+            'mad-max': 'https://www.youtube.com/embed/hEJnMQG9ev8',
+            'the-hangover': 'https://www.youtube.com/embed/tcdUhdOlz9M',
+            'the-godfather': 'https://www.youtube.com/embed/UaVTIH8mujA',
+            '13th': 'https://www.youtube.com/embed/7mQr3vUQzYc'
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get('movie');
+
+        const trailerUrl = trailers[movieId];
+        if (trailerUrl) {
+            document.getElementById('movie-trailer').src = trailerUrl;
+        } else {
+            document.getElementById('movie-trailer').src = '';
+            alert('Trailer not found.');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Cineflow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #141414; /* Dark background */
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #e50914; /* Netflix red */
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+        }
+        nav {
+            background-color: #333; /* Dark background for nav */
+            padding: 10px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding: 20px;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #555; /* Dark border */
+            border-radius: 4px;
+            background: #222; /* Dark input background */
+            color: #fff;
+        }
+        .movie-card {
+            background: #333; /* Dark movie card background */
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px;
+            display: inline-block;
+            width: 200px;
+            vertical-align: top;
+        }
+        .movie-card img {
+            width: 100%;
+            border-radius: 4px;
+        }
+        .movie-card h2 {
+            margin: 10px 0;
+        }
+        .movie-card button {
+            background: #e50914; /* Netflix red */
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .movie-card button:hover {
+            background: #b81d24; /* Darker red */
+        }
+        .movie-card .watchlist-button {
+            background: #555; /* Gray for watchlist button */
+        }
+        .movie-card .watchlist-button:hover {
+            background: #777; /* Darker gray */
+        }
+        .sign-out-btn {
+            background: #e50914; /* Netflix red */
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .sign-out-btn:hover {
+            background: #b81d24; /* Darker red */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cineflow</h1>
+    </header>
+
+    <nav>
+        <a href="video.html">Movie Trailer</a>
+        <a href="transactions.html">Transaction</a>
+        <a href="watchlist.html">Watchlist</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="profile.html">Profile</a>
+        <a href="genres.html">Genres</a>
+        <a href="faq.html">FAQ</a>
+        <a href="settings.html">Settings</a>
+    </nav>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search for movies..." oninput="searchMovies()">
+        </div>
+        <div id="movie-list">
+            <!-- Movie cards will be dynamically inserted here -->
+        </div>
+        <button class="sign-out-btn" onclick="signOut()">Sign Out</button>
+    </div>
+
+    <script>
+        const movies = [
+            { id: 1, title: 'The Last Stand', poster: 'https://m.media-amazon.com/images/M/MV5BODc4NjI0OTYwNl5BMl5BanBnXkFtZTcwOTYwODQ3OA@@._V1_.jpg', genre: 'Action', description: 'A sheriff and his team must stop a notorious drug cartel leader from escaping across the border.', trailer: 'https://www.youtube.com/embed/k6T2Q_M911c' },
+            { id: 3, title: 'The Outsider', poster: 'https://m.media-amazon.com/images/M/MV5BY2E4Njk4N2UtZWFhOS00NzczLWFmNDgtMzdhMjFlNTZjMmVhL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg', genre: 'Drama', description: 'A former American soldier in post-WWII Japan becomes embroiled in the dangerous world of the Yakuza.', trailer: 'https://www.youtube.com/embed/vHfbaGWUzms' },
+            { id: 5, title: 'Bunker Project 12', poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_zFgv1ZsnQlNpVn_tHwZ6n7RR2wmBoDIdhA&s', genre: 'Sci-Fi', description: 'In the wake of a deadly experiment in the 1950s, a secret Soviet military installation spirals out of control.', trailer: 'https://www.youtube.com/embed/ZR9WQxJ5IkE' },
+            { id: 6, title: 'Ip Man 3', poster: 'https://m.media-amazon.com/images/M/MV5BMTkxNzc0MjgwN15BMl5BanBnXkFtZTgwMzY3Nzk1NzE@._V1_.jpg', genre: 'Action', description: 'Ip Man faces a group of brutal gangsters threatening his martial arts school.', trailer: 'https://www.youtube.com/embed/JyaSs2VJZH4' },
+            { id: 7, title: 'Monsters of Man', poster: 'https://m.media-amazon.com/images/M/MV5BYThhYTY4YTgtZDM4OS00ZDdiLWI5NTItMDBkYjc0ODM2MzU3XkEyXkFqcGdeQXVyNDQ0MDAxNQ@@._V1_.jpg', genre: 'Sci-Fi', description: 'A robotics company teams up with a corrupt CIA agent to conduct an illegal test in a remote jungle.', trailer: 'https://www.youtube.com/embed/OpPRBbRvKcA' },
+            { id: 8, title: 'The Icebreaker', poster: 'https://resizing.flixster.com/FTsCIbNB3QzWySVNrlD16Tiu-nU=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzL2M4MDMxMTBmLWE1YWMtNDgxMC04N2NmLWU1NDhlMzIyZjgyNS53ZWJw', genre: 'Action', description: 'A Russian icebreaker battles to avoid a collision with an iceberg and faces life-or-death decisions in the freezing wilderness.', trailer: 'https://www.youtube.com/embed/kJQw7w5fYEw' },
+            { id: 9, title: 'Conjuring the beyond', poster: 'https://m.media-amazon.com/images/M/MV5BNGZiZmQ1MWYtYjQwZS00N2JmLThhMGMtMGM2ZGY0MDY5YWNiXkEyXkFqcGc@._V1_.jpg', genre: 'Sci-Fi', description: 'A falsely accused ex-government agent is sent to rescue the president’s daughter from a maximum-security space prison.', trailer: 'https://www.youtube.com/embed/Ctw2HYnlOps' },
+            { id: 10, title: 'Maze Runner', poster: 'https://m.media-amazon.com/images/M/MV5BMjUyNTA3MTAyM15BMl5BanBnXkFtZTgwOTEyMTkyMjE@._V1_FMjpg_UX1000_.jpg', genre: 'Action', description: 'Thomas leads the Gladers on their final mission to save their friends and confront the powerful WCKD organization.', trailer: 'https://www.youtube.com/embed/4-BTxXm8KSg' },
+        ];
+
+        const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+
+        function displayMovies(movies) {
+            const movieList = document.getElementById('movie-list');
+            movieList.innerHTML = '';
+            movies.forEach(movie => {
+                const isOnWatchlist = watchlist.some(watchlistMovie => watchlistMovie.id === movie.id);
+                const watchlistButtonText = isOnWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist';
+
+                const movieCard = document.createElement('div');
+                movieCard.className = 'movie-card';
+                movieCard.innerHTML = `
+                    <img src="${movie.poster}" alt="${movie.title}">
+                    <h2>${movie.title}</h2>
+                    <button onclick="window.location.href='watchnow.html?id=${movie.id}'">Play</button>
+                    <button class="watchlist-button" onclick="toggleWatchlist(${movie.id})">${watchlistButtonText}</button>
+                `;
+                movieList.appendChild(movieCard);
+            });
+        }
+
+        function searchMovies() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const filteredMovies = movies.filter(movie =>
+                movie.title.toLowerCase().includes(searchTerm)
+            );
+            displayMovies(filteredMovies);
+        }
+
+        function toggleWatchlist(movieId) {
+            const movie = movies.find(movie => movie.id === movieId);
+            if (movie) {
+                const index = watchlist.findIndex(watchlistMovie => watchlistMovie.id === movieId);
+                if (index > -1) {
+                    // Remove from watchlist
+                    watchlist.splice(index, 1);
+                } else {
+                    // Add to watchlist
+                    watchlist.push(movie);
+                }
+                localStorage.setItem('watchlist', JSON.stringify(watchlist));
+                displayMovies(movies); // Refresh the movie list
+            }
+        }
+
+        function signOut() {
+            // Clear user session or authentication data
+            // Redirect to index page
+            window.location.href = 'index.html';
+        }
+
+        window.onload = () => {
+            displayMovies(movies);
+        };
+    </script>
+</body>
+</html>
